@@ -47,6 +47,40 @@ class LinkedList {
 	
 	public void insertNth(int data, int position) {
 		
+		if(position < 0 || position >= size + 1) {
+			return;
+		}
+		
+		int idx;
+		Node node;
+		Node insertNode = new Node(data);
+		
+		//start head
+		if(Math.abs(0 - position) < Math.abs(size-1 - position)) {
+			idx = 0;
+			node = head;
+			while(idx!=position) {
+				node = node.next;				
+				idx++;
+			}
+		}
+		else {
+			idx = size-1;
+			node = tail;
+			while(idx!=position) {
+				node = node.prev;
+				idx--;
+			}
+		}
+		
+		insertNode.prev = node.prev;
+		insertNode.next = node;
+		node.prev.next = insertNode;
+		node.prev = insertNode;
+		
+		size++;
+		
+		
 	}
 	
 	public void deleteHead() {
@@ -62,7 +96,38 @@ class LinkedList {
 	}
 	
 	public void deleteNth(int position) {
+	
+		if(position < 0 || position >= size) {
+			return;
+		}
 		
+		int idx;
+		Node node;
+		
+		//start head
+		if(Math.abs(0 - position) < Math.abs(size-1 - position)) {
+			idx = 0;
+			node = head;
+			while(idx!=position) {
+				node = node.next;				
+				idx++;
+			}
+		}
+		else {
+			idx = size-1;
+			node = tail;
+			while(idx!=position) {
+				node = node.prev;
+				idx--;
+			}
+		}
+		
+		node.prev.next = node.next;
+		node.next.prev = node.prev;
+		
+		node.next = node.prev = node = null;
+		
+		size--;
 	}
 	
 	public int getSize() {

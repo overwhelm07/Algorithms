@@ -11,6 +11,12 @@ public class ListTest {
 		ll.deleteHead();
 		ll.insertHead(9);		
 		ll.display();
+		ll.insertNth(2, 1);
+		ll.display();
+		ll.insertNth(2, 1);
+		ll.display();
+		ll.deleteNth(2);
+		ll.display();
 
 	}
 
